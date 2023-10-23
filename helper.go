@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func greet() {
@@ -12,30 +11,26 @@ func greet() {
 
 func getFirstNames() []string {
 	firstNames := []string{}
+
 	for _, booking := range bookings {
-		names := strings.Split(booking, " ")
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 	}
+
 	return firstNames
 }
 
 func getUserInput() (string, string, uint) {
 	var firstName string
-
 	var lastName string
-
 	var boughtTickets uint
 
 	fmt.Print("Enter your first name: ")
-
 	fmt.Scan(&firstName)
 
 	fmt.Print("Enter your last name: ")
-
 	fmt.Scan(&lastName)
 
 	fmt.Printf("Hello %v, how many tickets would you like to buy?\n", firstName)
-
 	fmt.Scan(&boughtTickets)
 
 	return firstName, lastName, boughtTickets
