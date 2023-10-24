@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func greet() {
@@ -13,7 +14,7 @@ func getFirstNames() []string {
 	firstNames := []string{}
 
 	for _, booking := range bookings {
-		firstNames = append(firstNames, booking["firstName"])
+		firstNames = append(firstNames, booking.firstName)
 	}
 
 	return firstNames
@@ -34,4 +35,16 @@ func getUserInput() (string, string, uint) {
 	fmt.Scan(&boughtTickets)
 
 	return firstName, lastName, boughtTickets
+}
+
+func sendTicket(boughtTickets uint, firstName string, lastName string) {
+	var message = fmt.Sprintf("%v tickets for %v %v", boughtTickets, firstName, lastName)
+
+	time.Sleep(5 * time.Second)
+	fmt.Printf("Sending ticket...\n")
+
+	time.Sleep(1 * time.Second)
+	fmt.Printf("Successfully sent %v\n", message)
+
+	wg.Done()
 }
